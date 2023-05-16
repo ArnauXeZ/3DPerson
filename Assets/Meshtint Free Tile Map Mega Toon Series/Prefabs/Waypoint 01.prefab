@@ -4836,6 +4836,7 @@ GameObject:
   - component: {fileID: 4579623904907906}
   - component: {fileID: 33168641610322978}
   - component: {fileID: 23537688779314044}
+  - component: {fileID: 609713115448607072}
   - component: {fileID: 65707845505491674}
   m_Layer: 0
   m_Name: Waypoint 01
@@ -4910,6 +4911,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &609713115448607072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620071135427400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dbf6ac1e71ccf841934a4fb1d7ed472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  ThePlayer: {fileID: 0}
 --- !u!65 &65707845505491674
 BoxCollider:
   m_ObjectHideFlags: 0
