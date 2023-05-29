@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CoinController : MonoBehaviour
 {
+    public AudioSource CoinSound;
+   
     private void OnTriggerEnter(Collider other)
     {
 
@@ -12,7 +14,7 @@ public class CoinController : MonoBehaviour
 
             GameManager.instance.AddPoints(1);
             Destroy(gameObject);
-           
+            CoinSound.Play();
         }
 
     }
