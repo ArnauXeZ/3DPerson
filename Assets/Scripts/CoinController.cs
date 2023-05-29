@@ -9,10 +9,11 @@ public class CoinController : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            
-            
+
+            GameManager.instance.AddPoints(1);
             Destroy(gameObject);
            
         }
+
     }
 }

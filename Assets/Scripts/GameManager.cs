@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance; // Instancia del GameManager
 
-    public Text scoreText; // Referencia al texto de la puntuación en la interfaz de usuario
+    public TextMeshProUGUI scoreText; // Referencia al texto de la puntuación en la interfaz de usuario
 
     private int score = 0; // Puntuación actual del jugador
 
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
     void UpdateScoreText()
     {
         // Actualizar el texto de la puntuación en la interfaz de usuario con el valor actual de la puntuación
-        scoreText.text = "Puntuación: " + score.ToString();
+        scoreText.text = "Score: " + score.ToString();
     }
+
 }
