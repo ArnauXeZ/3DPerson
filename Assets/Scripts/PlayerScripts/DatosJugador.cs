@@ -12,5 +12,10 @@ public class DatosJugador : MonoBehaviour
     private void Update()
     {
         vidaVisual.value = vidaPlayer;
+        // Verificar si el jugador ha caído por debajo de la posición Y -40
+        if (transform.position.y < -40f)
+        {
+            vidaPlayer = 0;
+        }
     }
 }

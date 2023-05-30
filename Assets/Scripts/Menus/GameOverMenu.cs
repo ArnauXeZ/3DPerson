@@ -11,10 +11,12 @@ public class GameOverMenu : MonoBehaviour
     public DatosJugador datosJugador;
     public AudioSource backgroundMusic;
     public AudioSource OverSound;
+    private CinemachineVirtualCamera cvCamera;
 
     private void Start()
     {
         gameOverCanvas.SetActive(false);
+        cvCamera = FindObjectOfType<CinemachineVirtualCamera>();
     }
     
     private bool gameOverDisplayed = false;
@@ -35,6 +37,7 @@ public class GameOverMenu : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        cvCamera.enabled = false;
 
         // Detener la reproducción de la música de fondo
         if (backgroundMusic != null)
@@ -52,6 +55,7 @@ public class GameOverMenu : MonoBehaviour
         {
             Debug.LogWarning("AudioSource de Game Over no asignado.");
         }
+
     }
 
     public void RestartGame()
