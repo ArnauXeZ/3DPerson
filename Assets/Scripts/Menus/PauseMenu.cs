@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject PauseMenuCanvas;
     private CinemachineVirtualCamera cvCamera;
     private AudioSource Musica;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         cvCamera = FindObjectOfType<CinemachineVirtualCamera>();
         Musica = FindObjectOfType<AudioSource>();
+        Cursor.lockState = CursorLockMode.Confined;
 
     }
 
@@ -46,6 +48,7 @@ public class PauseMenu : MonoBehaviour
         Paused = true;
         cvCamera.enabled = false;
         Musica.mute = true;
+        Cursor.lockState = CursorLockMode.None;
 
     }
 
@@ -56,6 +59,7 @@ public class PauseMenu : MonoBehaviour
         Paused = false;
         cvCamera.enabled = true;
         Musica.mute = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void MainMenuButton()
