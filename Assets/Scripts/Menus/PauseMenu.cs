@@ -24,7 +24,7 @@ public class PauseMenu : MonoBehaviour
         Reset = false;
         Time.timeScale = 1f;
         cvCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        musica = FindObjectOfType<AudioSource>();
+        
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
