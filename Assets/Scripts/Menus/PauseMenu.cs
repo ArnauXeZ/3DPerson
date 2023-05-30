@@ -3,55 +3,81 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
-
+using TMPro;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool Paused;
     public GameObject PauseMenuCanvas;
     private CinemachineVirtualCamera cvCamera;
-    private AudioSource Musica;
+    public AudioSource musica;
+    public Vector3 initialPos = new Vector3(0f, 0f, 0f);
+    public static bool Reset;
+    public DatosJugador datosJugador; // Referencia al script DatosJugador
 
-    // Start is called before the first frame update
+    public GameObject player;
+
     void Start()
     {
         PauseMenuCanvas.SetActive(false);
         Paused = false;
+        Reset = false;
         Time.timeScale = 1f;
         cvCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        Musica = FindObjectOfType<AudioSource>();
-        Cursor.visible = false; // Oculta el cursor del mouse
-        Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor en el centro de la pantalla
-
+        musica = FindObjectOfType<AudioSource>();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(Paused)
+            if (Paused)
             {
                 Play();
             }
             else
             {
                 Stop();
-
             }
         }
+
+        if (Reset)
+        {
+            ResetPosition();
+        }
     }
-    
+
     void Stop()
     {
         PauseMenuCanvas.SetActive(true);
-            Time.timeScale = 0f;
+        Time.timeScale = 0f;
         Paused = true;
         cvCamera.enabled = false;
-        Musica.mute = true;
+        musica.mute = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
 
+    public void ResetPosition()
+    {
+        PauseMenuCanvas.SetActive(false);
+        Time.timeScale = 1f;
+        Paused = false;
+        cvCamera.enabled = true;
+        musica.mute = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
+        player.transform.position = initialPos;
+        player.transform.rotation = Quaternion.identity;
+
+        // Reiniciar la vida del personaje al 100
+        datosJugador.vidaPlayer = 100;
+
+        musica.Stop();
+        musica.Play();
     }
 
     public void Play()
@@ -60,9 +86,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         Paused = false;
         cvCamera.enabled = true;
-        Musica.mute = false;
-        Cursor.visible = false; // Oculta el cursor del mouse
-        Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor en el centro de la pantalla;
+        musica.mute = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void MainMenuButton()
@@ -70,3 +96,5 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }
+
+
