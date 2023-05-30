@@ -20,7 +20,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         cvCamera = FindObjectOfType<CinemachineVirtualCamera>();
         Musica = FindObjectOfType<AudioSource>();
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false; // Oculta el cursor del mouse
+        Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor en el centro de la pantalla
 
     }
 
@@ -49,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         cvCamera.enabled = false;
         Musica.mute = true;
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
     }
 
@@ -59,7 +61,8 @@ public class PauseMenu : MonoBehaviour
         Paused = false;
         cvCamera.enabled = true;
         Musica.mute = false;
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false; // Oculta el cursor del mouse
+        Cursor.lockState = CursorLockMode.Locked; // Bloquea el cursor en el centro de la pantalla;
     }
 
     public void MainMenuButton()
