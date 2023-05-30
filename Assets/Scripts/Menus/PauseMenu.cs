@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool Paused = false;
+    public static bool Paused;
     public GameObject PauseMenuCanvas;
+    private CinemachineVirtualCamera cvCamera;
     // Start is called before the first frame update
     void Start()
     {
+        PauseMenuCanvas.SetActive(false);
+        Paused = false;
         Time.timeScale = 1f;
+        cvCamera = FindObjectOfType<CinemachineVirtualCamera>();
+
     }
 
     // Update is called once per frame
@@ -26,6 +32,7 @@ public class PauseMenu : MonoBehaviour
             else
             {
                 Stop();
+
             }
         }
     }
@@ -34,7 +41,9 @@ public class PauseMenu : MonoBehaviour
     {
         PauseMenuCanvas.SetActive(true);
             Time.timeScale = 0f;
-        Paused = false;
+        Paused = true;
+        cvCamera.enabled = false;
+
     }
 
     public void Play()
@@ -42,6 +51,7 @@ public class PauseMenu : MonoBehaviour
         PauseMenuCanvas.SetActive(false);
         Time.timeScale = 1f;
         Paused = false;
+        cvCamera.enabled = true;
     }
 
     public void MainMenuButton()
