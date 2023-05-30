@@ -16,14 +16,18 @@ public class GameOverMenu : MonoBehaviour
     {
         gameOverCanvas.SetActive(false);
     }
+    
+    private bool gameOverDisplayed = false;
 
     private void Update()
     {
-        if (datosJugador.vidaPlayer <= 0)
+        if (datosJugador.vidaPlayer <= 0 && !gameOverDisplayed)
         {
             ShowGameOverMenu();
+            gameOverDisplayed = true;
         }
     }
+
 
     public void ShowGameOverMenu()
     {
