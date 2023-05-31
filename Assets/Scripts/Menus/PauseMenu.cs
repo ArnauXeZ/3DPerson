@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     public AudioMixer audioMixer; // Referencia al AudioMixer que controla las opciones de audio
 
     public GameObject player;
+    public GameObject enemigo; // Referencia al enemigo
 
     void Start()
     {
@@ -48,6 +49,11 @@ public class PauseMenu : MonoBehaviour
         if (Reset)
         {
             ResetPosition();
+        }
+        // Verificar si el enemigo ha sido destruido
+        if (enemigo == null)
+        {
+            CargarEscenaCreditos();
         }
     }
 
@@ -113,6 +119,11 @@ public class PauseMenu : MonoBehaviour
             // Establecer el valor del parámetro "VolumenMusica"
             audioMixer.SetFloat("VolumenMusica", volumen);
         }
+    }
+
+    public void CargarEscenaCreditos()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 
