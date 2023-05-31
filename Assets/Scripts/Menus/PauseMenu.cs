@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using TMPro;
+using UnityEngine.Audio;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     public Vector3 initialPos = new Vector3(0f, 0f, 0f);
     public static bool Reset;
     public DatosJugador datosJugador; // Referencia al script DatosJugador
+    public AudioMixer audioMixer; // Referencia al AudioMixer que controla las opciones de audio
 
     public GameObject player;
 
@@ -24,7 +26,7 @@ public class PauseMenu : MonoBehaviour
         Reset = false;
         Time.timeScale = 1f;
         cvCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        
+        CargarOpciones();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -90,6 +92,29 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
+
+    public void GuardarOpciones()
+    {
+        // Obtener el valor actual del parámetro "VolumenMusica"
+        float volumen;
+        audioMixer.GetFloat("VolumenMusica", out volumen);
+        PlayerPrefs.SetFloat("Volumen", volumen);
+
+        // Guardar los cambios en las preferencias del jugador
+        PlayerPrefs.Save();
+    }
+
+    public void CargarOpciones()
+    {
+        if (PlayerPrefs.HasKey("Volumen"))
+        {
+            float volumen = PlayerPrefs.GetFloat("Volumen");
+
+            // Establecer el valor del parámetro "VolumenMusica"
+            audioMixer.SetFloat("VolumenMusica", volumen);
+        }
+    }
+
 
     public void MainMenuButton()
     {
