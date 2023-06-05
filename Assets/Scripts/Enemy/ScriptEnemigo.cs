@@ -10,7 +10,7 @@ public class ScriptEnemigo : MonoBehaviour
     void Start()
     {
         agente = GetComponent<NavMeshAgent>();
-        //animador = GetComponent<Animator>();
+        animador = GetComponent<Animator>();
     }
 
     void Update()
@@ -19,18 +19,18 @@ public class ScriptEnemigo : MonoBehaviour
         float distancia = Vector3.Distance(transform.position, objetivo.position);
 
         // Si la distancia es mayor que un valor determinado, persigue al objetivo
-        if (distancia > 0.5f)
+        if (distancia > 6f)
         {
             agente.SetDestination(objetivo.position);
-            //animador.SetBool("Caminar", true);
-            //animador.SetBool("Atacar", false);
+             animador.SetBool("Caminar", true);
+             animador.SetBool("Atacar", false);
         }
         // Si la distancia es menor o igual a un valor determinado, ataca al objetivo
         else
         {
-            agente.SetDestination(transform.position);
-            //animador.SetBool("Caminar", false);
-           // animador.SetBool("Atacar", true);
+           // agente.SetDestination(transform.position);
+            animador.SetBool("Caminar", false);
+            animador.SetBool("Atacar", true);
         }
         
         if (transform.position.y < -10f)
@@ -38,6 +38,12 @@ public class ScriptEnemigo : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+   // private void OnDrawGizmos()
+    //{
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawLine(transform.position.normalized, transform.position.normalized * Vector3.Distance(transform.position, objetivo.position));
+   // }
 }
 
 
