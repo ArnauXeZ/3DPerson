@@ -19,7 +19,7 @@ public class ScriptEnemigo : MonoBehaviour
         float distancia = Vector3.Distance(transform.position, objetivo.position);
 
         // Si la distancia es mayor que un valor determinado, persigue al objetivo
-        if (distancia > 6f)
+        if (distancia > 1.5f)
         {
             agente.SetDestination(objetivo.position);
              animador.SetBool("Caminar", true);

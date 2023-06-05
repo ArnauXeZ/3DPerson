@@ -5,7 +5,7 @@ using UnityEngine;
 public class Destroy : MonoBehaviour
 {
     public AudioSource DestroySound;
-    public GameObject enemy; // Referencia al enemigo que queremos destruir
+    public GameObject floar; // Referencia al enemigo que queremos destruir
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,8 +15,8 @@ public class Destroy : MonoBehaviour
             DestroySound.Play();
 
             // Destruir el enemigo y ajustar su posición al caer al vacío
-            Destroy(enemy);
-            enemy.transform.position = new Vector3(enemy.transform.position.x, -100f, enemy.transform.position.z);
+            Destroy(floar);
+            Destroy(gameObject);
         }
     }
 }
