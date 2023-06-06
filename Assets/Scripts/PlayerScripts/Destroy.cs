@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Destroy : MonoBehaviour
 {
     public AudioSource DestroySound;
     public GameObject floar; // Referencia al enemigo que queremos destruir
+    public NavMeshAgent enemy;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,7 +18,7 @@ public class Destroy : MonoBehaviour
 
             // Destruir el enemigo y ajustar su posición al caer al vacío
             Destroy(floar);
-            Destroy(gameObject);
+            enemy.enabled = false;
         }
     }
 }

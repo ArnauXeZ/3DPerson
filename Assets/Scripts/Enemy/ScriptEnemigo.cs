@@ -33,7 +33,7 @@ public class ScriptEnemigo : MonoBehaviour
             animador.SetBool("Atacar", true);
         }
         
-        if (transform.position.y < -10f)
+        if (transform.position.y < -40f)
         {
             Destroy(gameObject);
         }
